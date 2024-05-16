@@ -20,6 +20,7 @@ def load_models():
 
 gru_model,lstm_model,cnn_model,transformer_model = load_models()
 
+prediction_decoding = {0:"medical doctor", 1:"veterinarian", 2:"person who is neither a medical doctor not a veterinarian" }
 
 def main():
     st.title('Social Media Comment Classification')
@@ -33,7 +34,8 @@ def main():
     st.divider()
 
     html_temp2 = """
-    <div style="background:#66807b ;padding:10px">
+    <div style="background:#14302f ;padding:10px">
+    <p style="color:white;text-align:left;">This project aims to infer the profession of reddit users from their comments </p>
     <h5 style="color:white;text-align:left;">Class Codes</h5>
     <p style="color:white;text-align:left;">Medical Practitioner: 0, Veterinarian: 1, Others:2 </p>
     </div>
@@ -50,7 +52,7 @@ def main():
         trfPred = np.argmax(transformer_model.predict(input_data))
         ensemblePred = ensemblePrediction([cnnPred,gruPred,trfPred,lstmPred])
 
-        st.success("Prediction:" + str(ensemblePred))
+        st.success("A " + prediction_decoding[ensemblePred] + " made this comment")
     
     st.divider()
     dataset = st.file_uploader("Upload a csv dataset of reddit comments. Comments must be in a 'comments' column", type=["csv"], accept_multiple_files = False)
