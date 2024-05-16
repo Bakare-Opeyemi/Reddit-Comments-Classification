@@ -1,0 +1,8 @@
+pandas
+numpy
+streamlit
+watchdog
+keras==2.15.0
+tensorflow==2.15.0
+statistics
+nltk==3.8.1
