@@ -77,15 +77,15 @@ def preprocessComment(comment):
 
 
 def ensemblePrediction(predictionList):
-    predictionList.sort()
-    indecisiveVotes = [[0,0,1,1], [0,0,2,2], [1,1,2,2]]
-    if predictionList in indecisiveVotes:
-        ensembleDecision = 2
+  predictionList.sort()
+  indecisiveVotes = [[0,1,2]]
+  if predictionList in indecisiveVotes:
+    ensembleDecision = 1
 
-    else:
-        ensembleDecision = statistics.mode(predictionList)
+  else:
+    ensembleDecision = statistics.mode(predictionList)
 
-    return ensembleDecision
+  return ensembleDecision
 
 
 #Function to preprocess texts for batch prediction
